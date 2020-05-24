@@ -10,7 +10,7 @@ export default function CovidData(props) {
       <table
         className="table"
         style={{
-          background: "#f6f6f7",
+          background: "",
           color: "#6c757d",
         }}
       >
@@ -19,15 +19,19 @@ export default function CovidData(props) {
             <th scope="col" onClick={() => sortData("Country")}>
               Country
             </th>
-            <th scope="col" onClick={() => sortData("TotalDeaths")}>
-              TotalDeaths
+            <th scope="col" onClick={() => sortData("TotalConfirmed")}>
+              Confirmed
             </th>
             <th scope="col" onClick={() => sortData("TotalConfirmed")}>
-              TotalConfirmed
+              Active
             </th>
             <th scope="col" onClick={() => sortData("TotalRecovered")}>
-              TotalRecovered
+              Recovered
             </th>
+            <th scope="col" onClick={() => sortData("TotalDeaths")}>
+              Deaths
+            </th>
+
             <th></th>
           </tr>
         </thead>
@@ -35,9 +39,12 @@ export default function CovidData(props) {
           {coviddata.map((data, i) => (
             <tr key={data.Country}>
               <td className="clickable">{data.Country}</td>
-              <td className="clickable">{data.TotalDeaths}</td>
               <td className="clickable">{data.TotalConfirmed}</td>
+              <td className="clickable">
+                {data.TotalConfirmed - (data.TotalRecovered + data.TotalDeaths)}
+              </td>
               <td className="clickable">{data.TotalRecovered}</td>
+              <td className="clickable">{data.TotalDeaths}</td>
             </tr>
           ))}
         </tbody>

@@ -15,16 +15,13 @@ export default function GlobalDisplay(props) {
           flexWrap: "wrap",
         }}
       >
+        <Card color="primary" title="Confirmed" value={data.TotalConfirmed} />
+        <Card color="danger" title="Deaths" value={data.TotalDeaths} />
+        <Card color="success" title="Recovered" value={data.TotalRecovered} />
         <Card
           color="primary"
-          title="TotalConfirmed"
-          value={data.TotalConfirmed}
-        />
-        <Card color="danger" title="TotalDeaths" value={data.TotalDeaths} />
-        <Card
-          color="success"
-          title="TotalRecovered"
-          value={data.TotalRecovered}
+          title="Active"
+          value={data.TotalConfirmed - data.TotalRecovered - data.TotalDeaths}
         />
       </div>
     </div>
