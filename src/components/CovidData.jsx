@@ -4,6 +4,7 @@ export default function CovidData(props) {
   const coviddata = props.coviddata;
   const sortData = props.onsort;
   const dataType = props.dataType;
+  const onClickHandler = props.onclickhandler;
   return (
     <div>
       <table
@@ -36,7 +37,7 @@ export default function CovidData(props) {
         </thead>
         <tbody>
           {coviddata.map((data, i) => (
-            <tr key={data.Country}>
+            <tr key={data.Country} onClick={() => onClickHandler(data)}>
               <td className="clickable">
                 {dataType === "Countries" ? data.Country : data.state}
               </td>
