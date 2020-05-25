@@ -6,6 +6,7 @@ import GlobalDisplay from "./components/globalDisplay";
 import axios from "axios";
 import { Heading } from "./config/constants";
 import { Bar } from "react-chartjs-2";
+import UIspinner from "./components/UIspinner";
 const API_URL = "https://api.covid19api.com/summary";
 const API_URL_States = "https://api.covidindiatracker.com/state_data.json";
 //const API_URL_INDIA = "http://covid19-india-adhikansh.herokuapp.com/summary";
@@ -15,11 +16,12 @@ function App() {
   const [globalData, setGlobalData] = useState({});
   const [indiadata, setIndiadata] = useState({});
   const [statesdata, setStatesdata] = useState([]);
-  const [loading, isloading] = useState(false);
+
   const [bardata, setbardata] = useState([]);
   const [date, setdate] = useState();
   const [selectedStateData, setselectedStatedata] = useState([]);
   const [selectedStateName, setselectedStateName] = useState("None");
+  const [loading, isloading] = useState(false);
   useEffect(() => {
     getdataFromApi();
   }, []);
@@ -132,18 +134,7 @@ function App() {
               <GlobalDisplay data={indiadata} place="INDIA" />
             </div>
           ) : (
-            <div
-              class="spinner-border text-primary"
-              style={{
-                textAlign: "center",
-                position: "relative",
-                top: "50%",
-                left: "50%",
-              }}
-              role="status"
-            >
-              <span class="sr-only">Loading...</span>
-            </div>
+            <UIspinner />
           )}
         </div>
         <div className="col-12 col-sm-7">
@@ -185,20 +176,24 @@ function App() {
           />
         </div>
         <div className="col-xl-5 col-12">
-          <Bar
-            data={state}
-            options={{
-              title: {
-                display: true,
-                text: "India Cases ",
-                fontSize: 20,
-              },
-              legend: {
-                display: true,
-                position: "right",
-              },
-            }}
-          />
+          {isloading ? (
+            <Bar
+              data={state}
+              options={{
+                title: {
+                  display: true,
+                  text: "India Cases ",
+                  fontSize: 20,
+                },
+                legend: {
+                  display: true,
+                  position: "right",
+                },
+              }}
+            />
+          ) : (
+            <UIspinner />
+          )}
           <Bar
             data={selectedState}
             options={{
@@ -216,10 +211,9 @@ function App() {
         </div>
       </div>
       <div className="row" style={{ margin: "5em" }}>
-        <div className="col-12 col-xl-7 App">Made with ❤ by Parvez khan.</div>
+        <div className="col-12 col-xl-12 App">Made with ❤ by Parvez khan.</div>
       </div>
     </div>
   );
 }
-
 export default App;

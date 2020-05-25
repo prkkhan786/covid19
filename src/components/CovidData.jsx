@@ -4,7 +4,12 @@ export default function CovidData(props) {
   const coviddata = props.coviddata;
   const sortData = props.onsort;
   const dataType = props.dataType;
-  const onClickHandler = props.onclickhandler;
+  let onClickHandler = props.onclickhandler;
+  if (!onClickHandler) {
+    onClickHandler = () => {
+      console.log("");
+    };
+  }
   return (
     <div>
       <table
