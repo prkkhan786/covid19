@@ -3,8 +3,7 @@ import React from "react";
 export default function CovidData(props) {
   const coviddata = props.coviddata;
   const sortData = props.onsort;
-  console.log("The data", coviddata);
-
+  const dataType = props.dataType;
   return (
     <div>
       <table
@@ -17,7 +16,7 @@ export default function CovidData(props) {
         <thead>
           <tr>
             <th scope="col" onClick={() => sortData("Country")}>
-              Country
+              {dataType}
             </th>
             <th scope="col" onClick={() => sortData("TotalConfirmed")}>
               Confirmed
@@ -38,13 +37,28 @@ export default function CovidData(props) {
         <tbody>
           {coviddata.map((data, i) => (
             <tr key={data.Country}>
-              <td className="clickable">{data.Country}</td>
-              <td className="clickable">{data.TotalConfirmed}</td>
               <td className="clickable">
-                {data.TotalConfirmed - (data.TotalRecovered + data.TotalDeaths)}
+                {dataType === "Countries" ? data.Country : data.state}
               </td>
-              <td className="clickable">{data.TotalRecovered}</td>
-              <td className="clickable">{data.TotalDeaths}</td>
+              <td className="clickable">
+                {dataType === "Countries"
+                  ? data.TotalConfirmed
+                  : data.confirmed}
+              </td>
+              <td className="clickable">
+                {dataType === "Countries"
+                  ? data.TotalConfirmed -
+                    (data.TotalRecovered + data.TotalDeaths)
+                  : data.confirmed - (data.recovered + data.deaths)}
+              </td>
+              <td className="clickable">
+                {dataType === "Countries"
+                  ? data.TotalRecovered
+                  : data.recovered}
+              </td>
+              <td className="clickable">
+                {dataType === "Countries" ? data.TotalDeaths : data.deaths}
+              </td>
             </tr>
           ))}
         </tbody>

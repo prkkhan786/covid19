@@ -5,14 +5,15 @@ import _ from "lodash";
 import GlobalDisplay from "./components/globalDisplay";
 import axios from "axios";
 import { Heading } from "./config/constants";
-
 const API_URL = "https://api.covid19api.com/summary";
+const API_URL_States = "https://api.covidindiatracker.com/state_data.json";
 //const API_URL_INDIA = "http://covid19-india-adhikansh.herokuapp.com/summary";
 
 function App() {
   const [conviddata, setcoviddata] = useState([]);
   const [globalData, setGlobalData] = useState({});
   const [indiadata, setIndiadata] = useState({});
+  const [statesdata, setStatesdata] = useState([]);
   const [loading, isloading] = useState(false);
   const [date, setdate] = useState();
   useEffect(() => {
@@ -21,22 +22,27 @@ function App() {
 
   const getdataFromApi = async () => {
     try {
-      const [{ data: coviddata }] = await Promise.all([
+      const [{ data: coviddata }, { data: statesdata }] = await Promise.all([
         axios.get(API_URL),
-        //axios.get(API_URL_INDIA),
+        axios.get(API_URL_States),
       ]);
+      console.log("The states data", statesdata);
+
       const data = coviddata.Countries;
       const date = coviddata.Date;
-      console.log("The date is ", date);
+
       const globaldata = coviddata.Global;
       const indaData = data.find((ele) => ele.Country === "India");
-      console.log("india data is ", indaData);
+
       setcoviddata(data);
       setGlobalData(globaldata);
       setIndiadata(indaData);
       setdate(date);
+      setStatesdata(statesdata);
       isloading(true);
     } catch (err) {
+      getdataFromApi();
+
       console.log(err);
     }
   };
@@ -90,9 +96,38 @@ function App() {
               overflow: "scroll",
             }}
           >
-            <CovidData coviddata={conviddata} onsort={handleSort} />
+            <CovidData
+              coviddata={conviddata}
+              onsort={handleSort}
+              dataType="Countries"
+            />
           </div>
         </div>
+      </div>
+
+      <div className="row" style={{ marginTop: "5em" }}>
+        <div className="col-xl-12 col-12">
+          <h1 className="App display-1" style={{ fontSize: "6vw" }}>
+            Indian States
+          </h1>
+        </div>
+        <div
+          className="col-xl-12 col-12"
+          style={{
+            width: "auto",
+            height: "30em",
+            overflow: "scroll",
+          }}
+        >
+          <CovidData
+            coviddata={statesdata}
+            onsort={handleSort}
+            dataType="States"
+          />
+        </div>
+      </div>
+      <div className="row" style={{ margin: "5em" }}>
+        <div className="col-12 col-xl-12 App">Made with ❤ by Parvez khan.</div>
       </div>
     </div>
   );
