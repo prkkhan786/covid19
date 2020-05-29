@@ -16,7 +16,6 @@ function App() {
   const [globalData, setGlobalData] = useState({});
   const [indiadata, setIndiadata] = useState({});
   const [statesdata, setStatesdata] = useState([]);
-
   const [bardata, setbardata] = useState([]);
   const [date, setdate] = useState();
   const [selectedStateData, setselectedStatedata] = useState([]);
@@ -89,9 +88,11 @@ function App() {
       indiadataFrorBar.push(
         indaData.TotalConfirmed,
         active,
-        indiadata.TotalRecovered,
+        indaData.TotalRecovered,
         indaData.TotalDeaths
       );
+
+      console.log("The pei data is ", indiadata.TotalRecovered);
 
       setcoviddata(data);
       setGlobalData(globaldata);

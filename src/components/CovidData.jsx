@@ -42,7 +42,11 @@ export default function CovidData(props) {
         </thead>
         <tbody>
           {coviddata.map((data, i) => (
-            <tr key={data.Country} onClick={() => onClickHandler(data)}>
+            <tr
+              key={data.Country}
+              onClick={() => onClickHandler(data)}
+              style={{ cursor: "pointer" }}
+            >
               <td className="clickable">
                 {dataType === "Countries" ? data.Country : data.state}
               </td>
