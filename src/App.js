@@ -211,8 +211,53 @@ function App() {
           />
         </div>
       </div>
-      <div className="row" style={{ margin: "5em" }}>
-        <div className="col-12 col-xl-12 App">Made with ❤ by Parvez khan.</div>
+      <div
+        className="row"
+        style={{ marginTop: "5em", position: "relative", left: "0" }}
+      >
+        <div className="col-12 col-xl-12 App">
+          <div
+            align="center"
+            className="socialbtns"
+            style={{ position: "relative", right: "1%" }}
+          >
+            <ul>
+              <li>
+                <a
+                  href="https://twitter.com/prkkhan1"
+                  className="fa fa-lg fa-twitter"
+                ></a>
+              </li>
+
+              <li>
+                <a
+                  href="https://github.com/prkkhan786"
+                  className="fa fa-lg fa-github"
+                ></a>
+              </li>
+
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/parvez-khan-1b245889/"
+                  className="fa fa-lg fa-linkedin"
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/travelwithparvez/"
+                  className="fa fa-lg fa-instagram"
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.youtube.com/channel/UCbazSHWpFq-Io2PiehXY2Zw"
+                  className="fa fa-lg fa-youtube"
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <p style={{ fontWeight: "bolder" }}>Made with ❤ by Parvez khan.</p>
+        </div>
       </div>
     </div>
   );
