@@ -176,7 +176,7 @@ export default function CovidData(props) {
                         }}
                         className="glyphicon glyphicon-arrow-up"
                       >
-                        {data.TotalRecovered}{" "}
+                        {data.NewRecovered}{" "}
                       </span>
                     )}
                     <span style={{ display: "block" }}>
