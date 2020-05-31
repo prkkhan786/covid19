@@ -51,23 +51,229 @@ export default function CovidData(props) {
                 {dataType === "Countries" ? data.Country : data.state}
               </td>
               <td className="clickable">
-                {dataType === "Countries"
-                  ? data.TotalConfirmed
-                  : data.confirmed}
+                {dataType === "Countries" ? (
+                  <div>
+                    {data.NewConfirmed === 0 ? (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+
+                          color: "red",
+                          display: "inline-block",
+                        }}
+                      >
+                        {"  "}
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+                          color: "red",
+                          display: "inline-block",
+                        }}
+                        className="glyphicon glyphicon-arrow-up"
+                      >
+                        {data.NewConfirmed}{" "}
+                      </span>
+                    )}
+                    <span style={{ display: "block" }}>
+                      {data.TotalConfirmed}
+                    </span>
+                  </div>
+                ) : (
+                  <div>
+                    {data.cChanges === 0 ? (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+
+                          color: "red",
+                          display: "inline-block",
+                        }}
+                      >
+                        {"  "}
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+                          color: "red",
+                          display: "inline-block",
+                        }}
+                        className="glyphicon glyphicon-arrow-up"
+                      >
+                        {data.cChanges}{" "}
+                      </span>
+                    )}
+                    <span style={{ display: "block" }}>{data.confirmed}</span>
+                  </div>
+                )}
               </td>
               <td className="clickable">
-                {dataType === "Countries"
-                  ? data.TotalConfirmed -
-                    (data.TotalRecovered + data.TotalDeaths)
-                  : data.confirmed - (data.recovered + data.deaths)}
+                {dataType === "Countries" ? (
+                  <div>
+                    <span
+                      style={{
+                        width: "35%",
+                        fontSize: "smaller",
+
+                        color: "red",
+                        display: "inline-block",
+                      }}
+                    >
+                      {"  "}
+                    </span>
+                    <span style={{ display: "block" }}>
+                      {data.TotalConfirmed -
+                        (data.TotalRecovered + data.TotalDeaths)}
+                    </span>
+                  </div>
+                ) : (
+                  <div>
+                    <span
+                      style={{
+                        width: "35%",
+                        fontSize: "smaller",
+
+                        color: "red",
+                        display: "inline-block",
+                      }}
+                    >
+                      {"  "}
+                    </span>
+                    <span style={{ display: "block" }}>
+                      {data.confirmed - (data.recovered + data.deaths)}
+                    </span>
+                  </div>
+                )}
               </td>
               <td className="clickable">
-                {dataType === "Countries"
-                  ? data.TotalRecovered
-                  : data.recovered}
+                {dataType === "Countries" ? (
+                  <div>
+                    {data.NewRecovered === 0 ? (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+
+                          color: "green",
+                          display: "inline-block",
+                        }}
+                      >
+                        {"  "}
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+                          color: "green",
+                          display: "inline-block",
+                        }}
+                        className="glyphicon glyphicon-arrow-up"
+                      >
+                        {data.TotalRecovered}{" "}
+                      </span>
+                    )}
+                    <span style={{ display: "block" }}>
+                      {data.TotalRecovered}
+                    </span>
+                  </div>
+                ) : (
+                  <div>
+                    {data.rChanges === 0 ? (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+
+                          color: "green",
+                          display: "inline-block",
+                        }}
+                      >
+                        {"  "}
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+                          color: "green",
+                          display: "inline-block",
+                        }}
+                        className="glyphicon glyphicon-arrow-up"
+                      >
+                        {data.rChanges}{" "}
+                      </span>
+                    )}
+                    <span style={{ display: "block" }}>{data.recovered}</span>
+                  </div>
+                )}
               </td>
               <td className="clickable">
-                {dataType === "Countries" ? data.TotalDeaths : data.deaths}
+                {dataType === "Countries" ? (
+                  <div>
+                    {data.NewDeaths === 0 ? (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+
+                          color: "grey",
+                          display: "inline-block",
+                        }}
+                      >
+                        {"  "}
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+                          color: "grey",
+                          display: "inline-block",
+                        }}
+                        className="glyphicon glyphicon-arrow-up"
+                      >
+                        {data.NewDeaths}{" "}
+                      </span>
+                    )}
+                    <span style={{ display: "block" }}>{data.TotalDeaths}</span>
+                  </div>
+                ) : (
+                  <div>
+                    {data.dChanges === 0 ? (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+
+                          color: "grey",
+                          display: "inline-block",
+                        }}
+                      >
+                        {"  "}
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          width: "35%",
+                          fontSize: "smaller",
+                          color: "grey",
+                          display: "inline-block",
+                        }}
+                        className="glyphicon glyphicon-arrow-up"
+                      >
+                        {data.dChanges}{" "}
+                      </span>
+                    )}
+                    <span style={{ display: "block" }}>{data.deaths}</span>
+                  </div>
+                )}
               </td>
             </tr>
           ))}

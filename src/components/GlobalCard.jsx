@@ -6,15 +6,17 @@ export default function Card(props) {
     fontSize: "10px",
   };
 
-  const { color, value, title } = props;
+  let { color, value, title, newdata } = props;
   const colorclass = `card-body text-${color}`;
+  newdata = "[+" + newdata + "]";
 
   return (
     <div
       className="card text-white border-primary mb-3"
       style={{ height: "5em", padding: "10" }}
     >
-      <div className={colorclass}>
+      <div className={colorclass} style={{ paddingTop: "0" }}>
+        <p style={{ margin: "0", padding: "0", color: "#FF6347" }}>{newdata}</p>
         <p className="card-text" style={{ margin: "0" }}>
           {title}{" "}
         </p>

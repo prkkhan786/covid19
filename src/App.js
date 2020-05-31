@@ -7,6 +7,7 @@ import axios from "axios";
 import { Heading } from "./config/constants";
 import { Bar } from "react-chartjs-2";
 import UIspinner from "./components/UIspinner";
+import Footer from "./components/Footer";
 const API_URL = "https://api.covid19api.com/summary";
 const API_URL_States = "https://api.covidindiatracker.com/state_data.json";
 //const API_URL_INDIA = "http://covid19-india-adhikansh.herokuapp.com/summary";
@@ -30,7 +31,7 @@ function App() {
     datasets: [
       {
         label: "Number",
-        backgroundColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgba(75,192,192,123)",
         borderColor: "rgba(0,0,0,1)",
         borderWidth: 2,
         // data: [1971, 21060, 1600],
@@ -216,47 +217,7 @@ function App() {
         style={{ marginTop: "5em", position: "relative", left: "0" }}
       >
         <div className="col-12 col-xl-12 App">
-          <div
-            align="center"
-            className="socialbtns"
-            style={{ position: "relative", right: "1%" }}
-          >
-            <ul>
-              <li>
-                <a
-                  href="https://twitter.com/prkkhan1"
-                  className="fa fa-lg fa-twitter"
-                ></a>
-              </li>
-
-              <li>
-                <a
-                  href="https://github.com/prkkhan786"
-                  className="fa fa-lg fa-github"
-                ></a>
-              </li>
-
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/parvez-khan-1b245889/"
-                  className="fa fa-lg fa-linkedin"
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/travelwithparvez/"
-                  className="fa fa-lg fa-instagram"
-                ></a>
-              </li>
-              <li>
-                <a
-                  href="https://www.youtube.com/channel/UCbazSHWpFq-Io2PiehXY2Zw"
-                  className="fa fa-lg fa-youtube"
-                ></a>
-              </li>
-            </ul>
-          </div>
-          <p style={{ fontWeight: "bolder" }}>Made with ❤ by Parvez khan.</p>
+          <Footer />
         </div>
       </div>
     </div>
