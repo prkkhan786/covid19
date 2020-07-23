@@ -94,3 +94,7 @@ a:hover {
   -webkit-transition: all ease-in 0.5s;
   -o-transition: all ease-in 0.5s;
 }
+
+.sortable tr {
+  cursor: pointer;
+}

@@ -8,6 +8,7 @@ import { Heading } from "./config/constants";
 import { Bar } from "react-chartjs-2";
 import UIspinner from "./components/UIspinner";
 import Footer from "./components/Footer";
+
 const API_URL = "https://api.covid19api.com/summary";
 const API_URL_States = "https://api.covidindiatracker.com/state_data.json";
 //const API_URL_INDIA = "http://covid19-india-adhikansh.herokuapp.com/summary";
@@ -22,6 +23,7 @@ function App() {
   const [selectedStateData, setselectedStatedata] = useState([]);
   const [selectedStateName, setselectedStateName] = useState("None");
   const [loading, isloading] = useState(false);
+  const [orderBy, setorderby] = useState("asc");
   useEffect(() => {
     getdataFromApi();
   }, []);
@@ -54,7 +56,6 @@ function App() {
   };
 
   function onIndianStatesdataClickhandler(data) {
-    console.log("onclick event triggered", data);
     const selecteStateData = [];
     selecteStateData.push(
       data.confirmed,
@@ -93,8 +94,6 @@ function App() {
         indaData.TotalDeaths
       );
 
-      console.log("The pei data is ", indiadata.TotalRecovered);
-
       setcoviddata(data);
       setGlobalData(globaldata);
       setIndiadata(indaData);
@@ -109,17 +108,32 @@ function App() {
     }
   };
 
-  function handleSort(path) {
-    const newData = [...conviddata];
-
-    if (newData.path === path) {
-      newData.order = newData.order === "asc" ? "desc" : "asc";
+  function handleSort(path, type) {
+    if (type === "Country") {
+      var newData = [...conviddata];
+      if (newData.path === path) {
+        let newOderBy = orderBy === "asc" ? "desc" : "asc";
+        setorderby(newOderBy);
+      } else {
+        newData.path = path;
+        let newOderBy = orderBy === "asc" ? "desc" : "asc";
+        setorderby(newOderBy);
+      }
+      const sorted = _.orderBy(newData, newData.path, orderBy);
+      setcoviddata(sorted);
     } else {
-      newData.path = path;
-      newData.order = "desc";
+      var newData = [...statesdata];
+      if (newData.path === path) {
+        let newOderBy = orderBy === "asc" ? "desc" : "asc";
+        setorderby(newOderBy);
+      } else {
+        newData.path = path;
+        let newOderBy = orderBy === "asc" ? "desc" : "asc";
+        setorderby(newOderBy);
+      }
+      const sorted = _.orderBy(newData, newData.path, orderBy);
+      setStatesdata(sorted);
     }
-    const sorted = _.orderBy(newData, newData.path, newData.order);
-    setcoviddata(sorted);
   }
 
   return (

@@ -1,10 +1,10 @@
 import React from "react";
-
 export default function CovidData(props) {
   const coviddata = props.coviddata;
   const sortData = props.onsort;
   const dataType = props.dataType;
   let onClickHandler = props.onclickhandler;
+
   if (!onClickHandler) {
     onClickHandler = () => {
       console.log("");
@@ -13,7 +13,7 @@ export default function CovidData(props) {
   return (
     <div>
       <table
-        className="table"
+        className="table sortable"
         style={{
           background: "",
           color: "#6c757d",
@@ -21,19 +21,64 @@ export default function CovidData(props) {
       >
         <thead>
           <tr>
-            <th scope="col" onClick={() => sortData("Country")}>
+            <th
+              scope="col"
+              onClick={() =>
+                sortData(
+                  "Country",
+                  dataType === "Countries" ? "Country" : "states"
+                )
+              }
+            >
+              <i class="fa fa-fw fa-sort"></i>
               {dataType}
             </th>
-            <th scope="col" onClick={() => sortData("TotalConfirmed")}>
+            <th
+              scope="col"
+              onClick={() =>
+                sortData(
+                  "TotalConfirmed",
+                  dataType === "Countries" ? "Country" : "states"
+                )
+              }
+            >
+              <i class="fa fa-fw fa-sort"></i>
               Confirmed
             </th>
-            <th scope="col" onClick={() => sortData("TotalConfirmed")}>
+            <th
+              scope="col"
+              onClick={() =>
+                sortData(
+                  "TotalConfirmed",
+                  dataType === "Countries" ? "Country" : "states"
+                )
+              }
+            >
+              <i class="fa fa-fw fa-sort"></i>
               Active
             </th>
-            <th scope="col" onClick={() => sortData("TotalRecovered")}>
+            <th
+              scope="col"
+              onClick={() =>
+                sortData(
+                  "TotalRecovered",
+                  dataType === "Countries" ? "Country" : "states"
+                )
+              }
+            >
+              <i class="fa fa-fw fa-sort"></i>
               Recovered
             </th>
-            <th scope="col" onClick={() => sortData("TotalDeaths")}>
+            <th
+              scope="col"
+              onClick={() =>
+                sortData(
+                  "TotalDeaths",
+                  dataType === "Countries" ? "Country" : "states"
+                )
+              }
+            >
+              <i class="fa fa-fw fa-sort"></i>
               Deaths
             </th>
 
