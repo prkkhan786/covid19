@@ -9,8 +9,13 @@ import { Bar } from "react-chartjs-2";
 import UIspinner from "./components/UIspinner";
 import Footer from "./components/Footer";
 
-const API_URL = "https://api.covid19api.com/summary";
-const API_URL_States = "https://api.covidindiatracker.com/state_data.json";
+//const API_URL = "https://api.covid19api.com/summary";
+const API_URL = "https://immense-garden-59038.herokuapp.com/";
+//const API_URL_States = "https://api.covidindiatracker.com/state_data.json";
+//const API_URL_States = "http://localhost:8081/all";
+
+const API_URL_States = "https://api.covid19india.org/data.json";
+
 //const API_URL_INDIA = "http://covid19-india-adhikansh.herokuapp.com/summary";
 
 function App() {
@@ -73,7 +78,8 @@ function App() {
         axios.get(API_URL),
         axios.get(API_URL_States),
       ]);
-      console.log("The states data", statesdata);
+      console.log("The states data", statesdata.statewise);
+      console.log("covid data ", coviddata);
 
       const data = coviddata.Countries;
 
@@ -98,11 +104,11 @@ function App() {
       setGlobalData(globaldata);
       setIndiadata(indaData);
       setdate(date);
-      setStatesdata(statesdata);
+      setStatesdata(statesdata.statewise);
       setbardata(indiadataFrorBar);
       isloading(true);
     } catch (err) {
-      getdataFromApi();
+      // getdataFromApi();
 
       console.log(err);
     }
@@ -122,7 +128,7 @@ function App() {
       const sorted = _.orderBy(newData, newData.path, orderBy);
       setcoviddata(sorted);
     } else {
-      var newData = [...statesdata];
+      newData = [...statesdata];
       if (newData.path === path) {
         let newOderBy = orderBy === "asc" ? "desc" : "asc";
         setorderby(newOderBy);
